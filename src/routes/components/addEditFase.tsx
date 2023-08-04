@@ -4,14 +4,15 @@ import {CrudFases} from "../hooks/CrudFases";
 import {Button} from "primereact/button";
 import {InputText} from "primereact/inputtext";
 import {Dialog} from "primereact/dialog";
+import {CrudAddUpdateFase} from "../hooks/crudAddUpdateFase";
 
 // @ts-ignore
 export const AddEditFase = ({visible, setVisible, idFase, setIdFase}) => {
-    const {addUpdateData} = CrudFases();
+    const addUpdateFase =CrudAddUpdateFase();
     let [namefase, setNameFase] = useState("");
     const onClickAdd = () => {
         const fase : Fase = {id:idFase, name: namefase}
-        addUpdateData(fase)
+        addUpdateFase(fase)
         setIdFase = '';
     }
 

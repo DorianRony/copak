@@ -1,7 +1,9 @@
 import {TablaEquipos} from "./components/TablaEquipos";
+import {Equipo} from "./interfaces/Equipo";
 
-export const Equipos = () => {
+// @ts-ignore
+export const Equipos = ({equipos}: { equipos: Equipo[] }) => {
     return (
-        <TablaEquipos></TablaEquipos>
+        <TablaEquipos equipos={equipos}></TablaEquipos>
     )
 }

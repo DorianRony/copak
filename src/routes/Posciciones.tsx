@@ -1,7 +1,8 @@
 import {TablaPosciciones} from "./components/TablaPosciciones";
+import {Equipo} from "./interfaces/Equipo";
 
-export const Posciciones = () => {
+export const Posciciones = ({equipos}: { equipos: Equipo[] }) => {
     return (
-        <TablaPosciciones></TablaPosciciones>
+        <TablaPosciciones equipos={equipos}></TablaPosciciones>
     )
 }

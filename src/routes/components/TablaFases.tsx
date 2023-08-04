@@ -1,14 +1,11 @@
 import React, {useState} from 'react'
-import {CrudEquipos} from "../hooks/CrudEquipos";
 import {DataTable} from "primereact/datatable";
 import {Column} from "primereact/column";
-import {CrudFases} from "../hooks/CrudFases";
-import {Fase} from "../interfaces/Fase";
 import {Button} from "primereact/button";
 import {AddEditFase} from "./addEditFase";
+import {Fase} from "../interfaces/Fase";
 
-export const TablaFases = () => {
-    const {fases} = CrudFases();
+export const TablaFases = ({fases}: { fases: Fase[] }) => {
     const [visible, setVisible] = useState(false);
     const [idFase, setIdFase] = useState('');
     const button = <div>

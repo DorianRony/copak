@@ -9,7 +9,6 @@ import {Equipo} from "../interfaces/Equipo";
 
 // @ts-ignore
 export const AddEditEquipo = ({visible, setVisible, idEquipo, setIdEquipo}) => {
-    const {addUpdateData} = CrudEquipos();
     let [nameEquipo, setNameEquipo] = useState("");
     let [descripcionEquipo, setDescripcionEquipo] = useState("");
     const onClickAdd = () => {
@@ -24,7 +23,7 @@ export const AddEditEquipo = ({visible, setVisible, idEquipo, setIdEquipo}) => {
             partidosPerdidos: 0,
             puntos: 0,
             id:idEquipo, name: nameEquipo}
-        addUpdateData(equipo)
+        CrudEquipos().addUpdateData(equipo)
         setIdEquipo = '';
     }
 

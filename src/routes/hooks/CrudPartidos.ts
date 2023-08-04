@@ -5,17 +5,6 @@ import {addDoc, collection, doc, getDocs, setDoc} from "firebase/firestore";
 
 const {db} = Firebase();
 
-const addUpdateData = async (partido: Partido) => {
-    try {
-        if (partido.id === '') {
-            await addDoc(collection(db, 'partido',), {...partido});
-        } else {
-            await setDoc(doc(db, 'partido', partido.id), {...partido});
-        }
-    } catch (error) {
-        console.log(error)
-    }
-}
 export const CrudPartidos = () => {
     const [partidos, setPartidos] = useState<Partido[]>([]);
     const listData = async () => {
@@ -31,7 +20,7 @@ export const CrudPartidos = () => {
                     equipo_local: doc.data().equipo_local,
                     equipo_visitante: doc.data().equipo_visitante,
                     fase: doc.data().fase,
-                    fecha: doc.data().fecha,
+                    fecha: new Date(doc.data().fecha.seconds*1000),
                     goles_local: doc.data().goles_local,
                     goles_visitante: doc.data().goles_visitante,
                     hora: doc.data().hora,
@@ -50,9 +39,8 @@ export const CrudPartidos = () => {
     }
     useEffect(() => {
         listData()
-    }, [partidos])
-    return {
-        partidos,
-        addUpdateData
-    }
+    }, [])
+    return (
+        partidos
+    )
 }

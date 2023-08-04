@@ -2,7 +2,7 @@ export interface Partido {
     id: string;
     equipo_local: string;
     equipo_visitante: string;
-    fecha: string;
+    fecha: Date;
     lugar: string;
     cancha: string;
     hora: string;

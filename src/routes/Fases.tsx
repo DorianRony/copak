@@ -1,7 +1,8 @@
 import {TablaFases} from "./components/TablaFases";
+import {Fase} from "./interfaces/Fase";
 
-export const Fases = () => {
+export const Fases = ({fases}: { fases: Fase[] }) => {
     return (
-        <TablaFases></TablaFases>
+        <TablaFases fases={fases}></TablaFases>
     )
 }

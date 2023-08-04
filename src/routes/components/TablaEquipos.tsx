@@ -1,15 +1,13 @@
 import React, {useState} from 'react'
-import {CrudEquipos} from "../hooks/CrudEquipos";
 import {Column} from "primereact/column";
 import {DataTable} from "primereact/datatable";
 import {Button} from "primereact/button";
-import {Dialog} from "primereact/dialog";
 import {Panel} from "primereact/panel";
-import {InputText} from "primereact/inputtext";
 import {AddEditEquipo} from "./addEditEquipo";
+import {Equipo} from "../interfaces/Equipo";
 
-export const TablaEquipos = () => {
-    const {equipos} = CrudEquipos();
+// @ts-ignore
+export const TablaEquipos = ({equipos}: { equipos: Equipo[] }) => {
     const [visible, setVisible] = useState(false);
     const [idEquipo, setIdEquipo] = useState('');
     const button = <div>

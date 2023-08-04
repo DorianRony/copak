@@ -1,13 +1,9 @@
 import React from 'react';
 import {DataTable} from 'primereact/datatable';
 import {Column} from 'primereact/column';
-import {CrudEquipos} from "../hooks/CrudEquipos";
+import {Equipo} from "../interfaces/Equipo";
 
-export const TablaPosciciones = () => {
-
-    const {equipos} = CrudEquipos();
-
-
+export const TablaPosciciones = ({equipos}: { equipos: Equipo[] }) => {
     return (
         <>
             <DataTable value={equipos} sortField={"puntos"}>
