@@ -2,9 +2,6 @@ import React, {useState} from 'react'
 import {InputText} from "primereact/inputtext";
 import {Button} from "primereact/button";
 import {Dialog} from "primereact/dialog";
-import {CrudFases} from "../hooks/CrudFases";
-import {CrudEquipos} from "../hooks/CrudEquipos";
-import {Fase} from "../interfaces/Fase";
 import {Equipo} from "../interfaces/Equipo";
 import {CrudAddUpdateEquipo} from "../hooks/crudAddUpdateEquipo";
 

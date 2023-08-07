@@ -1,13 +1,10 @@
-import PartidoDataView from "./PartidoPanel";
 import {Panel} from "primereact/panel";
 import React, {useEffect, useState} from "react";
-import {Button} from "primereact/button";
 import {Partido} from "../interfaces/Partido";
 import {Equipo} from "../interfaces/Equipo";
 import {Fase} from "../interfaces/Fase";
 import PartidoPanelAll from "./PartidoPanelAll";
 import {Dropdown, DropdownChangeEvent} from "primereact/dropdown";
-import {Calendar} from "primereact/calendar";
 import {Checkbox} from "primereact/checkbox";
 
 export const TablaPartidosAll = ({partidos, equipos, fases}: {

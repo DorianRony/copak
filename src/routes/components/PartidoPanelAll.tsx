@@ -1,17 +1,9 @@
-import React, {Fragment, useState} from 'react';
+import React, {Fragment} from 'react';
 import {DataView} from "primereact/dataview";
 import {Partido} from "../interfaces/Partido";
-import {Button} from "primereact/button";
-import {Badge} from "primereact/badge";
-import {Panel, PanelHeaderTemplateOptions} from "primereact/panel";
-import {Ripple} from "primereact/ripple";
-import {AddEditPartidoResult} from "./addEditPartidoResult";
-import {Equipo} from "../interfaces/Equipo";
+import {Panel} from "primereact/panel";
 
 export default function PartidoPanelAll({partidos}: { partidos: Partido[] }) {
-
-    const [visible, setVisible] = useState(false);
-    const [partidoDialog, setPartidoDialog] = useState<Partido>();
 
     const getSeverityLocal = (partido: Partido) => {
         if (partido.resultado === "Pendiente") {

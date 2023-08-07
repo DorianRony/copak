@@ -1,4 +1,3 @@
-import React from 'react'
 import {Fase} from "../interfaces/Fase";
 import {addDoc, collection, doc, setDoc} from "firebase/firestore";
 import {Firebase} from "../../database/Firebase";

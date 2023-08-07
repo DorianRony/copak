@@ -1,4 +1,3 @@
-import {TablaPartidos} from "./components/TablaPartidos";
 import {Partido} from "./interfaces/Partido";
 import {Equipo} from "./interfaces/Equipo";
 import {Fase} from "./interfaces/Fase";
