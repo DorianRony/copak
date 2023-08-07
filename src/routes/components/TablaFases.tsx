@@ -23,7 +23,6 @@ export const TablaFases = ({fases}: { fases: Fase[] }) => {
                         <Button style={{textAlign: "right"}} label="Editar" icon="pi pi-pencil"
                                 onClick={() => {
                                     setVisible(true)
-                                    console.log(rowData.id)
                                     setIdFase(rowData.id)
                                 }}/>
                 } header="Name"></Column>

@@ -7,11 +7,12 @@ import {Fases} from "./routes/Fases";
 import {CrudEquipos} from "./routes/hooks/CrudEquipos";
 import {CrudPartidos} from "./routes/hooks/CrudPartidos";
 import {CrudFases} from "./routes/hooks/CrudFases";
+import {TemporalUpdate} from "./routes/hooks/TemporalUpdate";
 
 export const App = () => {
 
-    const {equipos} = CrudEquipos();
-    const partidos = CrudPartidos();
+    const equipos = CrudEquipos();
+    const partidos = CrudPartidos()
     const fases = CrudFases();
 
     return (

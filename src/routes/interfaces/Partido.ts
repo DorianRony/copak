@@ -13,4 +13,6 @@ export interface Partido {
     cuotaLocal: string;
     cuotaVisitante: string;
     cuotaMas5Goles: string;
+    img_local: string;
+    img_visitante: string;
 }

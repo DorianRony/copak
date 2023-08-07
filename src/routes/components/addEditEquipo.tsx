@@ -6,11 +6,13 @@ import {CrudFases} from "../hooks/CrudFases";
 import {CrudEquipos} from "../hooks/CrudEquipos";
 import {Fase} from "../interfaces/Fase";
 import {Equipo} from "../interfaces/Equipo";
+import {CrudAddUpdateEquipo} from "../hooks/crudAddUpdateEquipo";
 
 // @ts-ignore
 export const AddEditEquipo = ({visible, setVisible, idEquipo, setIdEquipo}) => {
     let [nameEquipo, setNameEquipo] = useState("");
     let [descripcionEquipo, setDescripcionEquipo] = useState("");
+    const addUpdateData = CrudAddUpdateEquipo();
     const onClickAdd = () => {
         const equipo : Equipo = {
             descripcion: descripcionEquipo,
@@ -22,8 +24,10 @@ export const AddEditEquipo = ({visible, setVisible, idEquipo, setIdEquipo}) => {
             partidosJugados: 0,
             partidosPerdidos: 0,
             puntos: 0,
-            id:idEquipo, name: nameEquipo}
-        CrudEquipos().addUpdateData(equipo)
+            id:idEquipo,
+            img:"",
+            name: nameEquipo}
+        addUpdateData(equipo)
         setIdEquipo = '';
     }
 

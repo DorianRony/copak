@@ -10,4 +10,5 @@ export interface Equipo {
     golesEnContra: number;
     diferenciaDeGoles: number;
     puntos: number;
+    img: string;
 }

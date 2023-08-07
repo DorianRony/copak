@@ -4,25 +4,32 @@ import {Partido} from "../interfaces/Partido";
 import {Dialog} from "primereact/dialog";
 import {InputText} from "primereact/inputtext";
 import {Button} from "primereact/button";
-import {Dropdown} from "primereact/dropdown";
+import {Dropdown, DropdownChangeEvent} from "primereact/dropdown";
 import {Equipo} from "../interfaces/Equipo";
 import {Toast} from "primereact/toast";
 import {Calendar} from "primereact/calendar";
-import {CrudAddUpdateData} from "../hooks/crudAddUpdateData";
+import {CrudAddUpdatePartido} from "../hooks/crudAddUpdatePartido";
 import moment from "moment";
 
 interface OnChangeEquipoParams {
     e: any;
 }
 
-export const AddEditPartido = ({visible, setVisible, idPartido, setIdPartido, equipos, fases}: { visible: any, setVisible: any, idPartido: any, setIdPartido: any, equipos: Equipo[], fases: Fase[] }) => {
+export const AddEditPartido = ({visible, setVisible, idPartido, setIdPartido, equipos, fases}: {
+    visible: any,
+    setVisible: any,
+    idPartido: any,
+    setIdPartido: any,
+    equipos: Equipo[],
+    fases: Fase[]
+}) => {
     const toast = useRef<Toast>(null);
     const show = () => {
         toast.current?.show({severity: 'error', summary: 'Error', detail: 'No se puede enfrentar al mismo equipo'});
     };
 
-    let [equipo_local, setEquipo_local] = useState("");
-    let [equipo_visitante, setEquipo_visitante] = useState("");
+    let [equipoLocal, setEquipoLocal] = useState<Equipo | null>();
+    let [equipoVisitante, setEquipoVisitante] = useState<Equipo | null>();
     let [fecha, setFecha] = useState<string | Date | Date[] | undefined>('');
     let [fase, setFase] = useState("");
     let [hora, setHora] = useState("");
@@ -34,14 +41,14 @@ export const AddEditPartido = ({visible, setVisible, idPartido, setIdPartido, eq
     let [goles_visitante, setGoles_visitante] = useState(0);
     let [resultado, setResultado] = useState("Pendiente");
     let [cancha, setCancha] = useState("");
-    const crudAddUpdateData = CrudAddUpdateData();
+    const crudAddUpdateData = CrudAddUpdatePartido();
     const onClickAdd = () => {
         const partido: Partido = {
             id: idPartido,
             cuotaLocal: cuotaLocal,
             cuotaVisitante: cuotaVisitante,
-            equipo_local: equipo_local,
-            equipo_visitante: equipo_visitante,
+            equipo_local: equipoLocal ? equipoLocal.name : "",
+            equipo_visitante: equipoVisitante ? equipoVisitante.name : "",
             fase: fase,
             fecha: fecha as Date,
             goles_local: goles_local,
@@ -51,24 +58,28 @@ export const AddEditPartido = ({visible, setVisible, idPartido, setIdPartido, eq
             resultado: resultado,
             cuotaMas5Goles: cuotaMas5Goles,
             cancha: cancha,
+            img_local: equipoLocal ? equipoLocal.img : "",
+            img_visitante: equipoVisitante ? equipoVisitante.img : "",
         }
         crudAddUpdateData(partido)
         setIdPartido = '';
     }
 
-    const onChangeEquipoLocal = ({e}: OnChangeEquipoParams) => {
-        if (equipo_visitante === e.value) {
+    const onChangeEquipoLocal = (value : Equipo) => {
+        if (equipoVisitante?.name === value.name) {
             show();
         } else {
-            setEquipo_local(e.value)
+            setEquipoLocal(value)
+            /* setImgLocal(e.value.img)*/
         }
     }
 
-    const onChangeEquipoVisitante = ({e}: OnChangeEquipoParams) => {
-        if (equipo_local === e.value) {
+    const onChangeEquipoVisitante = (value : Equipo) => {
+        if (equipoLocal?.name === value.name) {
             show();
         } else {
-            setEquipo_visitante(e.value)
+            setEquipoVisitante(value)
+            /*setImgVisitante(e.value.img)*/
         }
     }
 
@@ -82,21 +93,16 @@ export const AddEditPartido = ({visible, setVisible, idPartido, setIdPartido, eq
                             <label htmlFor="equipoLocal">Equipo Local</label>
                         </div>
                     </div>
-
-                    <div className="col-12 md:col-12 lg:col-3 text-center">
-                        {/*<InputText id="equipoLocal" onChange={(e) => setEquipo_local(e.target.value)} type="text"/>*/}
-                        <Dropdown value={equipo_local} onChange={(e) => onChangeEquipoLocal({e: e})} options={equipos}
-                                  optionLabel="name" optionValue={"name"}
-                                  placeholder="Seleccione un equipo" className="w-full md:w-14rem"/>
-                    </div>
+                    <Dropdown value={equipoLocal} onChange={(e: DropdownChangeEvent) => onChangeEquipoLocal(e.value)} options={equipos} optionLabel="name"
+                              placeholder="Seleccione un equipo" className="w-full md:w-14rem" />
                     <div className="col-12 md:col-12 lg:col-3">
                         <div className="text-center p-3 border-round-sm font-bold">
                             <label htmlFor="equipoVisitante">Equipo Visitante</label>
                         </div>
                     </div>
                     <div className="col-12 md:col-12 lg:col-3 text-center">
-                        <Dropdown value={equipo_visitante} onChange={e => onChangeEquipoVisitante({e: e})}
-                                  options={equipos} optionLabel="name" optionValue={"name"}
+                        <Dropdown value={equipoVisitante} onChange={(e: DropdownChangeEvent) => onChangeEquipoVisitante(e.value)}
+                                  options={equipos} optionLabel="name"
                                   placeholder="Seleccione un equipo" className="w-full md:w-14rem"/>
                     </div>
                     <div className="col-12 md:col-12 lg:col-3">

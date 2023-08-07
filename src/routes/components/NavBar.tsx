@@ -13,24 +13,14 @@ export const NavBar = () => {
     const items: MenuItem[] = [
         {
             label: 'Tabla Posciciones',
-            icon: 'pi pi-fw pi-file',
+            icon: 'pi pi-fw pi-server',
             command:() => {navigate('/Posciciones') }
         },
         {
             label: 'Partidos',
-            icon: 'pi pi-fw pi-pencil',
+            icon: 'pi pi-fw pi-list',
             command:() => {navigate('/Partidos') }
-        },
-        {
-            label: 'Equipos',
-            icon: 'pi pi-fw pi-user',
-            command:() => {navigate('/Equipos') }
-        },
-        {
-            label: 'Fases',
-            icon: 'pi pi-fw pi-user',
-            command:() => {navigate('/Fases') }
-        },
+        }
     ];
     return (
         <>

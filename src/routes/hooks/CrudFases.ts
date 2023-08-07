@@ -12,7 +12,6 @@ export const CrudFases = () => {
         try {
             const querySnapshot = await getDocs(collection(db, 'fase',));
             const docs: Fase[] = []
-            console.log(querySnapshot)
             querySnapshot.forEach(doc => {
                 docs.push({id: doc.id, name: doc.data().name})
             });

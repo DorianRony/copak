@@ -6,10 +6,12 @@ import {Badge} from "primereact/badge";
 import {Panel, PanelHeaderTemplateOptions} from "primereact/panel";
 import {Ripple} from "primereact/ripple";
 import {AddEditPartidoResult} from "./addEditPartidoResult";
+import {Equipo} from "../interfaces/Equipo";
 
 export default function PartidoDataView({partidos}: { partidos: Partido[] }) {
 
     const [visible, setVisible] = useState(false);
+    const [partidoDialog, setPartidoDialog] = useState<Partido>();
 
     const getSeverityLocal = (partido: Partido) => {
         if (partido.goles_local > partido.goles_visitante) {
@@ -60,10 +62,9 @@ export default function PartidoDataView({partidos}: { partidos: Partido[] }) {
             <>
                 <div>
                     <Button icon="pi pi-plus" size="small"
-                            onClick={() => setVisible(true)}
-                            visible={partido.resultado === "Pendiente"}
+                            onClick={() => {setVisible(true); setPartidoDialog(partido);}}
+                            // visible={partido.resultado === "Pendiente"}
                             label={"Resultado"}></Button>
-                    <AddEditPartidoResult visible={visible} setVisible={setVisible} partido={partido}></AddEditPartidoResult>
                 </div>
             </>
 
@@ -83,7 +84,7 @@ export default function PartidoDataView({partidos}: { partidos: Partido[] }) {
             </div>
         const template = (options: PanelHeaderTemplateOptions) => {
             const toggleIcon = options.collapsed ? 'pi pi-chevron-down' : 'pi pi-chevron-up';
-            const className = `${options.className} justify-content-start`;
+            const className = `${options.className} justify-content-start py-0`;
             const titleClassName = options.collapsed ? `${options.className}`
                 : `${options.className} ml-12 text-primary`;
             const resultadoPartido = options.collapsed ? resultado : headerExpand;
@@ -94,7 +95,7 @@ export default function PartidoDataView({partidos}: { partidos: Partido[] }) {
                         <span className={toggleIcon}></span>
                         <Ripple/>
                     </button>
-                    <div className={titleClassName + " col-10 sm-col-1"}>
+                    <div className={titleClassName + " col-10 sm-col-1 border-none"}>
                         {resultadoPartido} {header}
                     </div>
                 </div>
@@ -130,15 +131,19 @@ export default function PartidoDataView({partidos}: { partidos: Partido[] }) {
                         <div className="flex flex-column xl:flex-row xl:align-items-start p-4 gap-4">
                             <div
                                 className="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4">
-                                <div className="font-bold">
-                                    {partido.equipo_local}
+                                <div className="font-bold grid">
+                                    <img src={partido.img_local} alt={partido.img_local}
+                                         className="w-2rem shadow-2 border-round"/>
+                                    <div className="p-1">{partido.equipo_local}</div>
                                 </div>
                                 <div className="font-bold">
                                     <Badge size="large" value={partido.goles_local}
                                            severity={getSeverityLocal(partido)}></Badge>
                                 </div>
-                                <div className="font-bold">
-                                    {partido.equipo_visitante}
+                                <div className="font-bold grid">
+                                    <img src={partido.img_visitante} alt={partido.img_visitante}
+                                         className="w-2rem shadow-2 border-round"/>
+                                    <div className="p-1">{partido.equipo_visitante}</div>
                                 </div>
                                 <div className="font-bold">
                                     <Badge size="large" value={partido.goles_visitante}
@@ -149,13 +154,16 @@ export default function PartidoDataView({partidos}: { partidos: Partido[] }) {
                     </div>
                 </Panel>
             </>
-        );
+        )
+            ;
     };
 
     return (
         <>
             <div className="card">
                 <DataView value={partidos} itemTemplate={itemTemplate}/>
+                <AddEditPartidoResult visible={visible} setVisible={setVisible}
+                                      partido={partidoDialog}></AddEditPartidoResult>
             </div>
         </>
     )

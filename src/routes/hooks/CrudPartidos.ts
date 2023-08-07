@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import {Partido} from "../interfaces/Partido";
 import {Firebase} from "../../database/Firebase";
-import {addDoc, collection, doc, getDocs, setDoc} from "firebase/firestore";
+import {collection, getDocs} from "firebase/firestore";
 
 const {db} = Firebase();
 
@@ -27,10 +27,13 @@ export const CrudPartidos = () => {
                     lugar: doc.data().lugar,
                     resultado: doc.data().resultado,
                     cancha: doc.data().cancha,
+                    img_local: doc.data().img_local,
+                    img_visitante: doc.data().img_visitante,
                     id: doc.id
                 })
             });
-            setPartidos(docs)
+
+            setPartidos(docs.sort((pa, pb) => Number(pb.fecha) - Number(pa.fecha)))
 
         } catch (error) {
             console.log(error)
