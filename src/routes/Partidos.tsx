@@ -7,6 +7,7 @@ export const Partidos = ({partidos, equipos, fases}: { partidos: Partido[], equi
     return (
         <>
             <TablaPartidosAll partidos={partidos} equipos={equipos} fases={fases}></TablaPartidosAll>
+
         </>
     )
 }

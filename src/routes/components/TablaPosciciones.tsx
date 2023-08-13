@@ -12,7 +12,7 @@ export const TablaPosciciones = ({equipos}: { equipos: Equipo[] }) => {
     };
     return (
         <>
-            <DataTable value={equipos} size={"small"} className={"text-xs sm:text-lg md:text-2xl lg:text-2xl"}>
+            <DataTable value={equipos} size={"small"} className={"text-xs sm:text-lg md:text-xl lg:text-xl"}>
                 <Column
                     body={(rowData, rowIndex) => rowIndex.rowIndex + 1}
                     header="#"

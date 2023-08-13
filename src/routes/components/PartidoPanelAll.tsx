@@ -1,10 +1,16 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, useContext, useState} from 'react';
 import {DataView} from "primereact/dataview";
 import {Partido} from "../interfaces/Partido";
 import {Panel} from "primereact/panel";
+import {Button} from "primereact/button";
+import {AddEditPartidoResult} from "./addEditPartidoResult";
+import {UserContext} from "../context/UserContext";
 
 export default function PartidoPanelAll({partidos}: { partidos: Partido[] }) {
 
+    const [visible, setVisible] = useState(false);
+    const [partidoDialog, setPartidoDialog] = useState<Partido>();
+    const userCons = useContext(UserContext);
     const getSeverityLocal = (partido: Partido) => {
         if (partido.resultado === "Pendiente") {
             return '';
@@ -77,6 +83,10 @@ export default function PartidoPanelAll({partidos}: { partidos: Partido[] }) {
                             <strong>Fase: </strong>
                             {partido.fase}
                         </div>
+                        <Button icon="pi pi-plus" size="small" visible={!!userCons?.user}
+                                onClick={() => {setVisible(true); setPartidoDialog(partido);}}
+                            // visible={partido.resultado === "Pendiente"}
+                                label={"Resultado"}></Button>
                     </div>
                 </Panel>
             </>
@@ -85,9 +95,11 @@ export default function PartidoPanelAll({partidos}: { partidos: Partido[] }) {
 
     return (
         <div className="flex align-items-center justify-content-center">
-            <div className="card xs:col-12 sm:col-12 md:col-12 lg:col-6">
+            <div className="card xs:col-12 sm:col-12 md:col-12 lg:col-8">
                 <DataView value={partidos} itemTemplate={itemTemplate}/>
             </div>
+            <AddEditPartidoResult visible={visible} setVisible={setVisible}
+                                  partido={partidoDialog}></AddEditPartidoResult>
         </div>
     )
 };

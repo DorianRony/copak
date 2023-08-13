@@ -65,7 +65,7 @@ export const AddEditPartido = ({visible, setVisible, idPartido, setIdPartido, eq
         setIdPartido = '';
     }
 
-    const onChangeEquipoLocal = (value : Equipo) => {
+    const onChangeEquipoLocal = (value: Equipo) => {
         if (equipoVisitante?.name === value.name) {
             show();
         } else {
@@ -74,7 +74,7 @@ export const AddEditPartido = ({visible, setVisible, idPartido, setIdPartido, eq
         }
     }
 
-    const onChangeEquipoVisitante = (value : Equipo) => {
+    const onChangeEquipoVisitante = (value: Equipo) => {
         if (equipoLocal?.name === value.name) {
             show();
         } else {
@@ -86,22 +86,28 @@ export const AddEditPartido = ({visible, setVisible, idPartido, setIdPartido, eq
     return (
         <>
             <Toast ref={toast}/>
-            <Dialog header="Fase" onHide={() => setVisible(false)} visible={visible} className="sm:w-12 lg:w-7 md:w-12">
+            <Dialog header="Agregar Partido" onHide={() => setVisible(false)} visible={visible}
+                    className="sm:w-12 lg:w-8 md:w-12">
                 <div className="grid">
                     <div className="col-12 md:col-12 lg:col-3">
                         <div className="text-center p-3 border-round-sm font-bold">
                             <label htmlFor="equipoLocal">Equipo Local</label>
                         </div>
                     </div>
-                    <Dropdown value={equipoLocal} onChange={(e: DropdownChangeEvent) => onChangeEquipoLocal(e.value)} options={equipos} optionLabel="name"
-                              placeholder="Seleccione un equipo" className="w-full md:w-14rem" />
+                    <div className="col-12 md:col-12 lg:col-3">
+                        <Dropdown value={equipoLocal}
+                                  onChange={(e: DropdownChangeEvent) => onChangeEquipoLocal(e.value)} options={equipos}
+                                  optionLabel="name"
+                                  placeholder="Seleccione un equipo" className="w-full md:w-14rem"/>
+                    </div>
                     <div className="col-12 md:col-12 lg:col-3">
                         <div className="text-center p-3 border-round-sm font-bold">
                             <label htmlFor="equipoVisitante">Equipo Visitante</label>
                         </div>
                     </div>
-                    <div className="col-12 md:col-12 lg:col-3 text-center">
-                        <Dropdown value={equipoVisitante} onChange={(e: DropdownChangeEvent) => onChangeEquipoVisitante(e.value)}
+                    <div className="col-12 md:col-12 lg:col-3">
+                        <Dropdown value={equipoVisitante}
+                                  onChange={(e: DropdownChangeEvent) => onChangeEquipoVisitante(e.value)}
                                   options={equipos} optionLabel="name"
                                   placeholder="Seleccione un equipo" className="w-full md:w-14rem"/>
                     </div>
@@ -110,7 +116,7 @@ export const AddEditPartido = ({visible, setVisible, idPartido, setIdPartido, eq
                             <label htmlFor="fase">Fase</label>
                         </div>
                     </div>
-                    <div className="col-12 md:col-12 lg:col-3 text-center">
+                    <div className="col-12 md:col-12 lg:col-3">
                         <Dropdown value={fase} onChange={e => setFase(e.value)} options={fases} optionValue={"name"}
                                   optionLabel="name"
                                   placeholder="Seleccione una Fase" className="w-full md:w-14rem"/>
@@ -120,8 +126,8 @@ export const AddEditPartido = ({visible, setVisible, idPartido, setIdPartido, eq
                             <label htmlFor="fecha">Fecha</label>
                         </div>
                     </div>
-                    <div className="col-12 md:col-12 lg:col-3 text-center">
-                        <Calendar className={"col-12"} value={fecha} onChange={(e) => {
+                    <div className="col-12 md:col-12 lg:col-3">
+                        <Calendar className={"w-full col-12"} value={fecha} onChange={(e) => {
                             setFecha(e.value !== null ? e.value : "")
                         }}/>
                     </div>
@@ -130,9 +136,9 @@ export const AddEditPartido = ({visible, setVisible, idPartido, setIdPartido, eq
                             <label htmlFor="hora">Hora</label>
                         </div>
                     </div>
-                    <div className="col-12 md:col-12 lg:col-3 text-center">
+                    <div className="col-12 md:col-12 lg:col-3">
                         <InputText placeholder="hh:mm" className={"col-12"} id="hora"
-                                   onChange={(e) => setHora(e.target.value)} type="text"/>
+                                   onChange={(e) => setHora(e.target.value)}/>
 
                     </div>
                     <div className="col-12 md:col-12 lg:col-3">
@@ -141,8 +147,7 @@ export const AddEditPartido = ({visible, setVisible, idPartido, setIdPartido, eq
                         </div>
                     </div>
                     <div className="col-12  md:col-12 lg:col-3 text-center">
-                        <InputText className={"col-12"} id="cancha" onChange={(e) => setCancha(e.target.value)}
-                                   type="text"/>
+                        <InputText className={"col-12"} id="cancha" onChange={(e) => setCancha(e.target.value)}/>
                     </div>
                 </div>
                 <div style={{padding: 20}} className="card flex flex-wrap justify-content-center gap-2">
