@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/copak/static/css/main.c13a5774.css",
-    "main.js": "/copak/static/js/main.a5c33569.js",
+    "main.js": "/copak/static/js/main.28f296d5.js",
     "static/js/787.646bcee3.chunk.js": "/copak/static/js/787.646bcee3.chunk.js",
     "static/media/primeicons.svg": "/copak/static/media/primeicons.e1441b135b3ca9ad643c.svg",
     "static/media/primeicons.eot": "/copak/static/media/primeicons.d44157bdfa026dc877af.eot",
@@ -11,11 +11,11 @@
     "static/media/color.png": "/copak/static/media/color.6441e63a57ccc5105bad.png",
     "index.html": "/copak/index.html",
     "main.c13a5774.css.map": "/copak/static/css/main.c13a5774.css.map",
-    "main.a5c33569.js.map": "/copak/static/js/main.a5c33569.js.map",
+    "main.28f296d5.js.map": "/copak/static/js/main.28f296d5.js.map",
     "787.646bcee3.chunk.js.map": "/copak/static/js/787.646bcee3.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.c13a5774.css",
-    "static/js/main.a5c33569.js"
+    "static/js/main.28f296d5.js"
   ]
 }
